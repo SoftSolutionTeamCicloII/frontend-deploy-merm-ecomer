@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import {  Route, Routes } from 'react-router-dom'
 import React from 'react'
 
-
+import { AuthProvider } from '../context/AuthProvider';
 import {Inicio} from "./Inicio";
 import {ProductosLista} from "./Productos/index.js";
 import  {ProductoDetalles} from "./Productos/ProductoDetalles.js"
@@ -29,12 +29,12 @@ export const Paginas = () => {
   
   return (
     <section>
-
+    <AuthProvider>
       <Routes>
           <Route path= "/"  element={<Inicio/>} />
           <Route path= "productos"  element={<ProductosLista/>}/>
           <Route path= "producto/:id"  element={<ProductoDetalles/>}/>
-          <Route path= "/login"  element={<Login/>}/>
+          <Route path= "login"  element={<Login/>}/>
           <Route path="/" element={<LayoutAuth />}>
         
           <Route path="registro" element={<Registro />} />
@@ -46,8 +46,8 @@ export const Paginas = () => {
                 <Route index element={<Perfil />} />
                 <Route path="cambiar-password" element={<CambiarPassword />} />
               </Route>
-              {/* <Route path="/productos" element={<RutaProtegida />}>
-                <Route index element={<ListaProductos />} /> */}
+              <Route path="/products" element={<RutaProtegida />}>
+                <Route index element={<ListaProductos />} />
                 <Route
                   path="agregar-producto"
                   element={<FormularioProductos />}
@@ -57,11 +57,11 @@ export const Paginas = () => {
                   element={<DetalleProducto />}
                 />
        
-    
+       </Route>
         </Route>
         
       </Routes>
-
+      </AuthProvider>
     </section>
   )
 }

@@ -4,20 +4,20 @@ import clienteAxios from '../config/axios'
 
 const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+const AuthProvider = ({children}) =>{
 
-    const [cargando, setCargando] = useState(true);
-    const [auth, setAuth] = useState({});
+    const [ cargando, setCargando ] = useState(true);
+    const [ auth, setAuth ] = useState({});
 
-    useEffect(() => {
-        const autenticarUsuario = async () => {
+    useEffect(()=>{
+        const autenticarUsuario = async () =>{
 
             const token = localStorage.getItem('token');
-
-            if (!token) {
+            
+            if(!token){
                 setCargando(false);
                 return;
-            }
+            } 
 
             const config = {
                 headers: {
@@ -25,12 +25,11 @@ const AuthProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`
                 }
             };
-            
             try {
                 const { data } = await clienteAxios('/usuarios/perfil', config);
                 setAuth(data);
                 // console.log(data);
-                // console.log(auth);
+                console.log(auth);
                 setCargando(false);
             } catch (error) {
                 console.log(error.response.data.msg);
@@ -39,7 +38,7 @@ const AuthProvider = ({ children }) => {
             setCargando(false);
         };
         autenticarUsuario();
-    }, []);
+    }, [auth]);
 
     const cerrarSesion = () => {
         localStorage.removeItem('token');
@@ -48,19 +47,21 @@ const AuthProvider = ({ children }) => {
 
     const actualizarPerfil = async datos => {
         const token = localStorage.getItem('token')
-        if (!token) {
+        if(!token) {
             setCargando(false)
             return
         }
         const config = {
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json", 
                 Authorization: `Bearer ${token}`
             }
         }
+
         try {
             const url = `/usuarios/perfil/${datos._id}`
             await clienteAxios.put(url, datos, config)
+
             return {
                 msg: 'Almacenado Correctamente'
             }
@@ -70,24 +71,27 @@ const AuthProvider = ({ children }) => {
                 error: true
             }
         }
-    };
+    }
 
     const guardarPassword = async (datos) => {
         const token = localStorage.getItem('token')
-        if (!token) {
+        if(!token) {
             setCargando(false)
             return
         }
         const config = {
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json", 
                 Authorization: `Bearer ${token}`
             }
         }
+
         try {
             const url = '/usuarios/actualizar-password'
+
             const { data } = await clienteAxios.put(url, datos, config)
-            // console.log(data)
+            // console.log(data) 
+
             return {
                 msg: data.msg
             }
@@ -97,9 +101,10 @@ const AuthProvider = ({ children }) => {
                 error: true
             }
         }
-    };
 
-    return (
+    }
+
+    return(
         <AuthContext.Provider
             value={{
                 auth,
@@ -110,7 +115,7 @@ const AuthProvider = ({ children }) => {
                 guardarPassword
             }}
         >
-            {children}
+            {children}            
         </AuthContext.Provider>
     )
 };
@@ -118,4 +123,5 @@ const AuthProvider = ({ children }) => {
 export {
     AuthProvider
 };
+
 export default AuthContext;

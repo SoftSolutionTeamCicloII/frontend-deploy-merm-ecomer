@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Alerta from "../../../src/componentes/Alerta.jsx";
 import clienteAxios from "../../config/axios";
-import imagenConfirmar from "../../assets/imagen-confirmacion.png";
+ 
 
 const Confirmar = () => {
   

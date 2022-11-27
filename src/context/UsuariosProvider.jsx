@@ -1,17 +1,15 @@
+/* eslint-disable no-unused-vars */
 import { createContext, useState, useEffect } from "react";
 import clienteAxios from "../config/axios";
-import Confirmar from "../pages/usuario/Confirmar";
+import Confirmar from "../pages/usuario/Confirmar.jsx";
 
 const UsuariosContext = createContext();
 
 const UsuariosProvider = ({ children }) => {
-
-    const [usuarios, setUsuarios] = useState([]);
-
-    const [usuario, setUsuario] = useState({});
+  const [usuarios, setUsuarios] = useState([]);
+  const [usuario, setUsuario] = useState({});
 
   useEffect(() => {
-
     const obtenerUsuarios = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -31,6 +29,7 @@ const UsuariosProvider = ({ children }) => {
     };
     obtenerUsuarios();
   }, []);
+
   const guardarUsuario = async (usuario) => {
     console.log(usuario);
     const token = localStorage.getItem("token");
@@ -66,11 +65,13 @@ const UsuariosProvider = ({ children }) => {
       }
     }
   };
+
   const setEdicion = (usuario) => {
     setUsuario(usuario);
   };
+
   const eliminarUsuario = async (id) => {
-    const confirmar = Confirmar ("¿Confirmas que deseas eliminar?");
+    const confirmar = Confirmar("¿Confirmas que deseas eliminar?");
     if (confirmar) {
       try {
         const token = localStorage.getItem("token");
@@ -90,6 +91,7 @@ const UsuariosProvider = ({ children }) => {
       }
     }
   };
+
   return (
     <UsuariosContext.Provider
       value={{

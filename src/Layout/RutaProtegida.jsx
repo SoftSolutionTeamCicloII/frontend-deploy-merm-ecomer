@@ -1,4 +1,4 @@
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Navbar from "../componentes/Navbar.jsx";
 
@@ -14,7 +14,7 @@ const RutaProtegida = () => {
     return (
 
 <div className="h-full">
-      {/* <Navbar /> */}
+      <Navbar />
       <Outlet />
     </div>
   );
