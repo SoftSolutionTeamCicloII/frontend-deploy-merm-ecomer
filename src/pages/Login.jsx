@@ -22,7 +22,7 @@ const Login = () => {
     
     e.preventDefault();
     console.log("Validacion");
-    
+
     if([email, password].includes('')){
       setAlerta({msg: "Todos los Campos son Obligatorios", error: true});
       return;
@@ -57,12 +57,12 @@ const Login = () => {
 
 
     return (
-        <div className='flex w-full'>
+        <div className='container flex w-full'>
             <div className='flex flex-col justify-center items-center lg:w-2/4 mr-10 md:flex-row '>
                 <img src={fondoLogin} alt="imagen login" className='relative w-0 md:w-1/2 lg:w-0 sm:w-0' />
                 <div className='container'>
 
-                    <h1 className='font-bold text-6xl uppercase text-center md:w-2/3 mx-auto'>Ingresa y disfruta de los <span className='text-sky-700'>productos</span></h1>
+                    <h1 className='titulo font-bold text-6xl uppercase text-center md:w-2/3 mx-auto'>Ingresa y disfruta de los <span className='text-sky-700'>productos</span></h1>
                     <form 
                         className='p-4 mx-auto w-96 sm:px-9 mt-8 shadow-md'
                         onSubmit={handleSudmit}
