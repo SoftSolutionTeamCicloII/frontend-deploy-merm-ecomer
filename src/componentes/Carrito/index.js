@@ -27,6 +27,7 @@ export const Carrito = () => {
       }
       setCarrito([...carrito])
     })
+    
   }
 
 
