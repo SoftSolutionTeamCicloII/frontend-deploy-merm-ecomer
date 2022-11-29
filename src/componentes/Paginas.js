@@ -29,8 +29,9 @@ export const Paginas = () => {
   
   return (
     <section>
-    <AuthProvider>
+        <AuthProvider>
       <Routes>
+
           <Route path= "/"  element={<Inicio/>} />
           <Route path= "productos"  element={<ProductosLista/>}/>
           <Route path= "producto/:id"  element={<ProductoDetalles/>}/>
@@ -59,7 +60,7 @@ export const Paginas = () => {
        
        </Route>
         </Route>
-        
+
       </Routes>
       </AuthProvider>
     </section>

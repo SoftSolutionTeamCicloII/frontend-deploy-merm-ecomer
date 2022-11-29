@@ -15,21 +15,21 @@ import {Carrito} from "./componentes/Carrito";
 function App() {
     return (
        < >
-     <DataProvider> 
+            <DataProvider>
        <div className ="App">
-  
+
            <Router>
-           
+
            <Header />
 
            <Carrito />
 
             <Paginas />         
-         
+
            </Router>
 
        </div> 
-       </DataProvider>
+       </DataProvider> 
 
        </>
     );
