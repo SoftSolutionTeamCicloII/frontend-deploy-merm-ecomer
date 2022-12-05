@@ -23,46 +23,57 @@ import CambiarPassword from "../pages/usuario/CambiarPassword.jsx";
  import ListaProductos from "./Productos/ListaProductos";
 import FormularioProductos from "./Productos/FormularioProductos.jsx";
 import DetalleProducto from "./Productos/DetalleProducto.jsx";
+ 
 
 
 export const Paginas = () => {
   
   return (
     <section>
+ 
         <AuthProvider>
+     
       <Routes>
-
-          <Route path= "/"  element={<Inicio/>} />
+      
+          <Route index  element={<Inicio/>} />
+ 
           <Route path= "productos"  element={<ProductosLista/>}/>
           <Route path= "producto/:id"  element={<ProductoDetalles/>}/>
-          <Route path= "login"  element={<Login/>}/>
+
+          
           <Route path="/" element={<LayoutAuth />}>
-        
+            
           <Route path="registro" element={<Registro />} />
           <Route path="olvide-password" element={<OlvidePassword />} />
           <Route path="confirmar/:id" element={<Confirmar />} />
+          <Route path='/agregar-producto' element={<FormularioProductos />} />
+       
+          {/* <Route element={FormularioProductos}/> */}
 
+
+          </Route>
            {/* Rutas Protegidas */}
+                    <Route path="login" element={<Login/>}/>
            <Route path="/perfil" element={<RutaProtegida />}>
                 <Route index element={<Perfil />} />
                 <Route path="cambiar-password" element={<CambiarPassword />} />
               </Route>
+
+                {/* Demo-app */}
               <Route path="/products" element={<RutaProtegida />}>
                 <Route index element={<ListaProductos />} />
-                <Route
-                  path="agregar-producto"
-                  element={<FormularioProductos />}
+
+        
+                <Route path="detalle-producto/:id"element={<DetalleProducto />}
                 />
-                <Route
-                  path="detalle-producto/:id"
-                  element={<DetalleProducto />}
-                />
-       
-       </Route>
+   
         </Route>
 
       </Routes>
+      {/* </FormularioProductos> */}
+      
       </AuthProvider>
+
     </section>
   )
 }

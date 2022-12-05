@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import {ProductoItem} from "./ProductoItem";
 
 export const ProductoDetalles = () => {
-  
+
   const value = useContext(DataContext)
   const [productos] = value.productos;
   const addCarrito = value.addCarrito;
@@ -14,7 +14,7 @@ export const ProductoDetalles = () => {
   const [images, setImages] = useState('');
   const  params = useParams();
   let item = 0;
-  
+
   useEffect(() =>{
 
     item = 0;
@@ -22,11 +22,11 @@ export const ProductoDetalles = () => {
       if(producto.id === parseInt(params.id)){
         setDetalle(producto)
         setUrl(0)
-        
+
 
       }
     })
- 
+
   },[params.id, productos])
 
   useEffect(() =>{
@@ -73,7 +73,7 @@ export const ProductoDetalles = () => {
       {
         url ?  <img src= {images} alt={detalle.title} /> : <img src= {detalle.image} alt={detalle.title} />
       }
-      
+
       <input type="range" min="1" max="36" value ={url} onChange={handleInput} />
       <div className="description">
       <p><b>description: </b> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum necessitatibus soluta alias porro, saepe facere expedita asperiores quos fugit inventore ex, itaque sapiente quae pariatur beatae optio repellat aperiam quia possimus mollitia repellendus? Illo natus quam eaque impedit omnis pariatur!</p>
@@ -88,13 +88,13 @@ export const ProductoDetalles = () => {
   <h2 className='relacionado'>Productos Relacionados</h2>
   <div className="productos">
     {
-      
+
 
       productos.forEach((producto) =>{
-       
+
         if((item < 6)&&(detalle.category === producto.category)){
         item++;
-        
+
         return <ProductoItem
         key={producto.id}
         title={producto.title}
